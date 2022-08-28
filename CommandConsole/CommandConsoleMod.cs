@@ -1,18 +1,41 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Reflection;
-using ModHelper.Config;
+using ModHelper;
 using Nuterra.NativeOptions;
 
 namespace Exund.CommandConsole
 {
-    public class CommandConsoleMod
+    public class CommandConsoleMod : ModBase
     {
         private static GameObject _holder;
 
         private static FieldInfo m_Sky;
 
         internal static KeyCode commandConsoleKeycode = KeyCode.KeypadEnter;
+
+        private static bool Inited = false;
+        public override void EarlyInit()
+        {
+            if (!Inited)
+            {
+                Inited = true;
+                Load();
+            }
+        }
+
+        public override bool HasEarlyInit()
+        {
+            return true;
+        }
+
+        public override void Init()
+        {
+        }
+
+        public override void DeInit()
+        {
+        }
 
         public static void Load()
         {
